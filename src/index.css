@@ -1,1 +1,35 @@
- 
+@keyframes glitch {
+  0% {
+    clip: rect(44px, 9999px, 98px, 0);
+  }
+  10% {
+    clip: rect(22px, 9999px, 86px, 0);
+  }
+  20% {
+    clip: rect(44px, 9999px, 18px, 0);
+  }
+  30% {
+    clip: rect(49px, 9999px, 9px, 0);
+  }
+  40% {
+    clip: rect(35px, 9999px, 32px, 0);
+  }
+  50% {
+    clip: rect(10px, 9999px, 51px, 0);
+  }
+  60% {
+    clip: rect(68px, 9999px, 76px, 0);
+  }
+  70% {
+    clip: rect(66px, 9999px, 47px, 0);
+  }
+  80% {
+    clip: rect(37px, 9999px, 10px, 0);
+  }
+  90% {
+    clip: rect(19px, 9999px, 31px, 0);
+  }
+  100% {
+    clip: rect(28px, 9999px, 31px, 0);
+  }
+}

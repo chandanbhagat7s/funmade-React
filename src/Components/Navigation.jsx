@@ -6,8 +6,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import useDebounce from "../Utility/useDebounce";
+import { useContext } from "react";
+import setLoadingContxt from "../Context/setLoadingContxt";
 
-function NavScrollExample({ setSearch }) {
+function NavScrollExample({ children }) {
+  const { setSearch, search } = useContext(setLoadingContxt);
   const delayIt = useDebounce((e) => {
     setSearch(e.target.value);
   }, 2000);
@@ -40,13 +43,10 @@ function NavScrollExample({ setSearch }) {
                 placeholder="Search for product "
                 className="me-2"
                 aria-label="Search"
-                onChange={delayIt}
+                onChange={(e) => delayIt(e)}
               />
             </Form>
-            <Link to={`/login`}>
-              <Button variant="outline-success ">Login</Button>
-            </Link>
-            <Button variant="outline-primary">SignUp</Button>
+            {children}
           </Stack>
         </Navbar.Collapse>
       </Container>
