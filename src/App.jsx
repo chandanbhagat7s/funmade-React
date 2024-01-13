@@ -5,12 +5,20 @@ import setLoadingContxt from "./Context/setLoadingContxt";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
       <setLoadingContxt.Provider
-        value={{ loading, setLoading, search, setSearch }}
+        value={{
+          loading,
+          setLoading,
+          search,
+          setSearch,
+          error,
+          setError,
+        }}
       >
         <Customroutes />
       </setLoadingContxt.Provider>

@@ -17,7 +17,7 @@ export default function Product({ data }) {
             <Card.Title>{data.productName}</Card.Title>
             <Card.Text>Price: Rs {data.price}</Card.Text>
             <Link to={`/product/${data.productName}`}>
-              <Button variant="primary">View Details</Button>
+              <Button variant="secondary">View Details</Button>
             </Link>
           </Card.Body>
         </Card>

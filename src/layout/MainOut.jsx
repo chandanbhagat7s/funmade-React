@@ -3,25 +3,32 @@ import NavScrollExample from "../Components/Navigation";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Footer from "../Components/Footer";
-import SetLoadingContxt from "../Context/setLoadingContxt";
 import BasicExampleS from "../Components/BasicExampleS";
 import { useContext, useEffect, useState } from "react";
-import Allproducts from "../Components/Allproducts";
 import setLoadingContxt from "../Context/setLoadingContxt";
 import SearchDetails from "../Pages/SearchDetails";
+import MessageComponent from "../Components/warning";
+let displayMessage;
+
 export default function MainOut({ children }) {
   const data = useSelector((state) => {
     // console.log(state);
     return state.auth;
   });
-  const { loading, search } = useContext(setLoadingContxt);
+  const { loading, search, error } = useContext(setLoadingContxt);
 
   // const [search, setSearch] = useState();
   // const { loading } = useContext(setLoadingContxt);
   // useEffect(() => {}, [search]);
 
+  useEffect(() => {}, [error]);
+  if (error.type == "warning") {
+    displayMessage = MessageComponent().warning(error.message);
+  }
+
   return (
     <>
+      {displayMessage}
       <NavScrollExample>
         {data.loggedin ? (
           <>
@@ -35,10 +42,13 @@ export default function MainOut({ children }) {
             <Link to={`/login`}>
               <Button variant="outline-success ">Login</Button>
             </Link>
-            <Button variant="outline-primary">SignUp</Button>
+            <Link to={`/signup`}>
+              <Button variant="outline-primary">SignUp</Button>
+            </Link>
           </>
         )}
       </NavScrollExample>
+
       {search && <SearchDetails />}
       {loading && <BasicExampleS key={loading} />}
 

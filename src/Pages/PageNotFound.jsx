@@ -8,7 +8,9 @@ const NotFound = () => {
   return (
     <div
       style={{
-        backgroundColor: "#f8d7da",
+        background: "linear-gradient(45deg, #000, #fff )",
+        backgroundSize: "400% 400%",
+        animation: "gradientAnimation 10s ease infinite",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
@@ -20,23 +22,33 @@ const NotFound = () => {
             <h1
               className="display-4"
               style={{
-                color: "#721c24",
+                color: "black",
                 fontSize: "4em",
                 marginBottom: "0.5em",
+                fontWeight: 800,
                 position: "relative",
               }}
             >
-              <span style={{ position: "relative", display: "inline-block" }}>
+              <span
+                style={{
+                  position: "relative",
+                  top: "0",
+                  left: "-50px",
+                  display: "inline-block",
+                }}
+              >
                 4
                 <span
                   style={{
-                    position: "relative",
+                    position: "absolute",
                     top: "0",
-                    left: "0",
+                    fontWeight: 600,
+
+                    left: "50px",
                     width: "100%",
                     height: "100%",
                     clip: "rect(0, auto, auto, 0)",
-                    animation: "glitch 1.5s infinite linear",
+                    animation: "glitch 3s infinite linear",
                   }}
                 >
                   0
