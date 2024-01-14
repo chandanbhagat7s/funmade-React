@@ -43,12 +43,13 @@ const LoginForm = () => {
 
     const response = await dispatch(LoginIntoAccount(logindata));
     if (response?.payload?.data?.status == "success") {
+      setError({ type: "dark", message: "logged in successfully " });
       neviagate("/");
     } else {
       console.log("came");
       setError({
         type: "danger",
-        message: response.payload.msg,
+        message: response?.payload?.data?.msg || "cannot log in",
       });
     }
     setLogindata({

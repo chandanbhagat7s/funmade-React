@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavScrollExample from "../Components/Navigation";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import setLoadingContxt from "../Context/setLoadingContxt";
 import SearchDetails from "../Pages/SearchDetails";
 import MessageComponent from "../Components/warning";
+import { logoutFromAccount } from "../Redux/Slices/AuthSlice";
 let DisplayMsg;
 
 export default function MainOut({ children }) {
@@ -18,6 +19,7 @@ export default function MainOut({ children }) {
   const { loading, search, error, setError } = useContext(setLoadingContxt);
   const [display, setDisplay] = useState(true);
 
+  const dispatch = useDispatch();
   // const [search, setSearch] = useState();
   // const { loading } = useContext(setLoadingContxt);
   // useEffect(() => {}, [error]);
@@ -36,9 +38,29 @@ export default function MainOut({ children }) {
       DisplayMsg = MessageComponent().warning(error.message);
     } else if (error.type == "danger") {
       DisplayMsg = MessageComponent().danger(error.message);
+    } else if (error.type == "primary") {
+      DisplayMsg = MessageComponent().primary(error.message);
+    } else if (error.type == "secondary") {
+      DisplayMsg = MessageComponent().secondary(error.message);
+    } else if (error.type == "success") {
+      DisplayMsg = MessageComponent().success(error.message);
+    } else if (error.type == "info") {
+      DisplayMsg = MessageComponent().info(error.message);
+    } else if (error.type == "light") {
+      DisplayMsg = MessageComponent().light(error.message);
+    } else if (error.type == "dark") {
+      DisplayMsg = MessageComponent().dark(error.message);
     }
   }
 
+  async function handleLogout() {
+    const res = await dispatch(logoutFromAccount());
+    if (res?.payload?.data.status == "success") {
+      setError({ type: "dark", message: "logged out successfully " });
+    } else {
+      setError({ type: "danger", message: "failed to logged out   " });
+    }
+  }
   return (
     <>
       {(display || error.message) && error.message && DisplayMsg}
@@ -48,7 +70,10 @@ export default function MainOut({ children }) {
             <Link to={`/profile`}>
               <Button variant="outline-success ">Profile</Button>
             </Link>
-            <Button variant="outline-danger">Logout</Button>
+
+            <Link onClick={handleLogout}>
+              <Button variant="outline-danger">Logout</Button>
+            </Link>
           </>
         ) : (
           <>
