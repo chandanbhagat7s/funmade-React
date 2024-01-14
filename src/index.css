@@ -45,3 +45,26 @@
     background-position: 0% 50%;
   }
 }
+
+.bouncing-component {
+  animation: bounceWithShake 1s ease infinite;
+}
+
+@keyframes bounceWithShake {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40%,
+  60% {
+    transform: translateY(-10px);
+  }
+
+  70% {
+    transform: translateY(-5px);
+  }
+}

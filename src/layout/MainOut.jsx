@@ -8,27 +8,40 @@ import { useContext, useEffect, useState } from "react";
 import setLoadingContxt from "../Context/setLoadingContxt";
 import SearchDetails from "../Pages/SearchDetails";
 import MessageComponent from "../Components/warning";
-let displayMessage;
+let DisplayMsg;
 
 export default function MainOut({ children }) {
   const data = useSelector((state) => {
     // console.log(state);
     return state.auth;
   });
-  const { loading, search, error } = useContext(setLoadingContxt);
+  const { loading, search, error, setError } = useContext(setLoadingContxt);
+  const [display, setDisplay] = useState(true);
 
   // const [search, setSearch] = useState();
   // const { loading } = useContext(setLoadingContxt);
-  // useEffect(() => {}, [search]);
+  // useEffect(() => {}, [error]);
 
-  useEffect(() => {}, [error]);
-  if (error.type == "warning") {
-    displayMessage = MessageComponent().warning(error.message);
+  if (error.type) {
+    display &&
+      setTimeout(() => {
+        setDisplay(false);
+        setError({ ...error, message: "" });
+      }, 4000);
+    error.message &&
+      setTimeout(() => {
+        setError({ ...error, message: "" });
+      }, 4000);
+    if (error.type == "warning") {
+      DisplayMsg = MessageComponent().warning(error.message);
+    } else if (error.type == "danger") {
+      DisplayMsg = MessageComponent().danger(error.message);
+    }
   }
 
   return (
     <>
-      {displayMessage}
+      {(display || error.message) && error.message && DisplayMsg}
       <NavScrollExample>
         {data.loggedin ? (
           <>

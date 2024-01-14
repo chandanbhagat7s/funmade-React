@@ -1,16 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Alert } from "react-bootstrap";
 import setLoadingContxt from "../Context/setLoadingContxt";
 
 const Message = ({ message }) => {
   const { error } = useContext(setLoadingContxt);
-  const [timer, setTimer] = useState(true);
-
-  setTimeout(() => {
-    setTimer(false);
-  }, 4000);
-
-  console.log("timer is ", timer);
 
   return (
     <div
@@ -19,18 +12,21 @@ const Message = ({ message }) => {
         top: "3%",
         left: "50%",
         transform: "translate(-50%, 0%)",
-        width: "300px",
+        width: "auto",
         zIndex: 999,
       }}
     >
-      {timer && (
+      {
         <>
-          {console.log("camed", timer)}
-          <Alert key={error.type} variant={error.type}>
+          <Alert
+            key={error.type}
+            variant={error.type}
+            className="bouncing-component"
+          >
             {error.message}
           </Alert>
         </>
-      )}
+      }
     </div>
   );
 };
@@ -41,13 +37,13 @@ const MessageComponent = () => {
       // return Message("warning", message);
       return <Message message={message} />;
     },
-    // primary: (message) => <Message variant="primary" message={message} />,
-    // secondary: (message) => <Message variant="secondary" message={message} />,
-    // success: (message) => <Message variant="success" message={message} />,
-    // danger: (message) => <Message variant="danger" message={message} />,
-    // info: (message) => <Message variant="info" message={message} />,
-    // light: (message) => <Message variant="light" message={message} />,
-    // dark: (message) => <Message variant="dark" message={message} />,
+    primary: (message) => <Message variant="primary" message={message} />,
+    secondary: (message) => <Message variant="secondary" message={message} />,
+    success: (message) => <Message variant="success" message={message} />,
+    danger: (message) => <Message variant="danger" message={message} />,
+    info: (message) => <Message variant="info" message={message} />,
+    light: (message) => <Message variant="light" message={message} />,
+    dark: (message) => <Message variant="dark" message={message} />,
   };
 
   return obj;
