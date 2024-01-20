@@ -1,8 +1,9 @@
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Product({ data }) {
+  const nevigate = useNavigate();
   return (
     <>
       <Col md={4} className="mb-4">
@@ -16,9 +17,16 @@ export default function Product({ data }) {
           <Card.Body>
             <Card.Title>{data.productName}</Card.Title>
             <Card.Text>Price: Rs {data.price}</Card.Text>
-            <Link to={`/product/${data.productName}`}>
-              <Button variant="secondary">View Details</Button>
-            </Link>
+            {/* <Link to={`/product/${data.productName}`}> */}
+            <Button
+              variant="secondary"
+              onClick={() =>
+                nevigate("/product/discription", { state: { ...data } })
+              }
+            >
+              View Details
+            </Button>
+            {/* </Link> */}
           </Card.Body>
         </Card>
       </Col>

@@ -50,6 +50,7 @@ export const logoutFromAccount = createAsyncThunk('/auth/logout', async (data) =
 const slice = createSlice({
     name: 'auth',
     initialState,
+
     reducers: {},
     // we are going to pass extrareducer , this is used to perform updation on the action which is ouside the slice / or thunks okk 
     extraReducers: (builder) => {
@@ -70,6 +71,8 @@ const slice = createSlice({
                 state.loggedin = false
             })
     }
+
+
 })
 
 // export const {} = slice.actions

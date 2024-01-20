@@ -5,27 +5,22 @@ import Row from "react-bootstrap/Row";
 import Product from "./Product";
 import { Container } from "react-bootstrap";
 import setLoadingContxt from "../Context/setLoadingContxt";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProduct } from "../Redux/Slices/productslice";
 
 function Allproducts({ url }) {
   // we will request the api for getting details
-  const [productData, setProductData] = useState([]);
-  const [error, setError] = useState(false);
+  // const [productData, setProductData] = useState([]);
+  const dispatch = useDispatch();
 
-  const { loading, setLoading } = useContext(setLoadingContxt);
+  const { loading, setLoading, setError, error } = useContext(setLoadingContxt);
+
+  let productData = useSelector((state) => {
+    return state.product.product;
+  });
 
   async function downlodeProduts() {
-    try {
-      setLoading(true);
-      const products = await axios.get(url);
-      console.log(products);
-
-      setProductData([...products.data.data.product]);
-      setLoading(false);
-    } catch (e) {
-      console.log("no product found with  ");
-      setError(true);
-      setLoading(false);
-    }
+    await dispatch(getAllProduct());
   }
   useEffect(() => {
     downlodeProduts();
@@ -33,17 +28,13 @@ function Allproducts({ url }) {
 
   return (
     <Container className="my-4">
-      {!error ? (
-        <Row>
-          {productData.map((el) => {
-            {
-              return <Product key={el._id} data={el} />;
-            }
-          })}
-        </Row>
-      ) : (
-        "error"
-      )}
+      <Row>
+        {productData?.map((el) => {
+          {
+            return <Product key={el._id} data={el} />;
+          }
+        })}
+      </Row>
     </Container>
   );
 }
