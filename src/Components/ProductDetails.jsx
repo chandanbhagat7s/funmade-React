@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
 import UncontrolledExample from "./UncontrolledExample";
-import BasicExampleS from "./BasicExampleS";
 
 export default function ProductDetails() {
   const { state } = useLocation();
@@ -46,7 +45,6 @@ export default function ProductDetails() {
               </Row>
             </Col>
           </Row>
-
           {/* Accordion for Images */}
           <Accordion className="my-4">
             <Card>
