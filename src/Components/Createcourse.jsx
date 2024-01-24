@@ -82,7 +82,8 @@ const CreateProduct = () => {
     try {
       const res = await axios.post(
         "http://127.0.0.1:3000/api/v1/product",
-        form
+        form,
+        { withCredentials: true }
       );
       console.log("res is ", res);
       if (res.data.status && res.data.status == "success") {

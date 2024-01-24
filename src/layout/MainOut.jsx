@@ -67,7 +67,7 @@ export default function MainOut({ children }) {
       <NavScrollExample>
         {data.loggedin ? (
           <>
-            <Link to={`/profile`}>
+            <Link to={"/profile"}>
               <Button variant="outline-success ">Profile</Button>
             </Link>
 
