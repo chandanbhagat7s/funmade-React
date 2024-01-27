@@ -68,3 +68,61 @@
     transform: translateY(-5px);
   }
 }
+
+/* CircularGradientAnimation.css */
+.circular-gradient-animation {
+  background: linear-gradient(black 0%, white 100%);
+  animation: rotate 3s linear infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    background: linear-gradient(to right bottom, black, rgb(74, 70, 70));
+  }
+  to {
+    background: linear-gradient(to left top, rgb(122, 119, 119), black);
+  }
+}
+
+.dimension-line {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.dimension-line::before,
+.dimension-line::after {
+  content: "";
+  position: absolute;
+  background-color: #333;
+  height: 2px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dimension-line::before {
+  left: 0;
+}
+
+.dimension-line::after {
+  right: 0;
+}
+
+.dimension-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+}
+::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background-color: black; /* Set the color of the scrollbar handle */
+  border-radius: 6px; /* Set the border-radius to make it rounded */
+}
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+}

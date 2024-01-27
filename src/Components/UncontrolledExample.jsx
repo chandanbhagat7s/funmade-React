@@ -1,10 +1,12 @@
+import { Image } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 
 function UncontrolledExample({ images }) {
   return (
     <Carousel>
       <Carousel.Item>
-        <img
+        <Image
+          thumbnail
           src={`http://127.0.0.1:3000/img/${images[0]}`}
           alt=""
           height={"100%"}
@@ -12,7 +14,8 @@ function UncontrolledExample({ images }) {
         />
       </Carousel.Item>
       <Carousel.Item>
-        <img
+        <Image
+          thumbnail
           src={`http://127.0.0.1:3000/img/${images[1]}`}
           alt=""
           height={"100%"}
@@ -20,7 +23,8 @@ function UncontrolledExample({ images }) {
         />
       </Carousel.Item>
       <Carousel.Item>
-        <img
+        <Image
+          thumbnail
           src={`http://127.0.0.1:3000/img/${images[2]}`}
           alt=""
           width={"100%"}

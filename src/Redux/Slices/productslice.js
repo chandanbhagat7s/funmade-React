@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // to get the list of productt we need to make the request call
-export const getAllProduct = createAsyncThunk('/product/allproducts', async () => {
+export const getAllProduct = createAsyncThunk('/product/allproducts', async (url) => {
     try {
 
-        const products = await axios.get('http://127.0.0.1:3000/api/v1/product', {
+        const products = await axios.get(url || 'http://127.0.0.1:3000/api/v1/product', {
             withCredentials: true
         });
 
-        return products.data.data.product
+        return products.data
 
 
     } catch (e) {
@@ -49,8 +49,13 @@ const productSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getAllProduct.fulfilled, (state, action) => {
+            console.log(action);
+            if (action.payload.status == 'success') {
+                state.product = action.payload.data.product
+            } else {
+                state.product = []
 
-            state.product = action.payload
+            }
         })
     }
 })

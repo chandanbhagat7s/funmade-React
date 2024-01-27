@@ -9,7 +9,7 @@ import axios from "axios";
 const initialState = {
     loggedin: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || '',
-    data: JSON.parse(localStorage.getItem('data')) | ''
+    data: JSON.parse(localStorage.getItem('data')) || '{abc}'
 }
 
 // we are going to create async thunks : thunks are the pice of code which is to be performed with some delay 
